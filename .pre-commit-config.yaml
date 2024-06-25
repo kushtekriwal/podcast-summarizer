@@ -1,0 +1,51 @@
+#TODO - is it a security risk to reference repos (should it all be just local)
+# https://stackoverflow.com/questions/67795922/understanding-how-to-configure-pre-commit-with-repo-local
+
+default_language_version:
+  # should match python version specified in pyproject.toml
+  python: python3.8
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
+      - id: debug-statements
+      - id: check-merge-conflict
+      - id: check-json
+      - id: end-of-file-fixer
+
+-   repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort (python)
+
+-   repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+
+-   repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black-jupyter
+
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.4.1
+    hooks:
+      - id: mypy
+
+- repo: local
+  hooks:
+    - id: pylint
+      name: pylint
+      entry: pylint
+      language: system
+      types: [python]
+      args:
+        [
+          "-rn", # Only display messages
+          "-sn", # Don't display the score
+        ]

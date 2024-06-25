@@ -1,0 +1,14 @@
+name: podcast.summarizer
+
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+# NOTE: Currently, the DS team at AQI has standardized on using Python 3.8. If you require
+# a different version for your service, then modify the version here (keep in mind that
+# the version of Anaconda or Miniconda that you have installed may need to be upgraded
+# in order to use a higher Python version).  The pyproject.toml and pre-commit.yaml will also
+# need to be updated.
+# Do NOT add packages here. Packages are managed by Poetry and are added in the pyproject.toml file
+  - python=3.8.13

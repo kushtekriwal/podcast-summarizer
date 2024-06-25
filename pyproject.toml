@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "analytics.anomaly.flatline"
+version = "0.0.1"
+description = "Predictive Analystics Flatline Anomaly Detection Service"
+authors = ["Aquatic Informatics"]
+license = "Proprietary"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.8" #ensure the python version specified in pre-commit-config.yaml is also updated when changing this
+pandas = "^2.0.3"
+numpy = "^1.24.2"
+scipy = "^1.10.1"
+pyculiarity = "^0.0.7"
+typing = "^3.7.0.0"
+aqi-ml-service-framework = {git = "https://github.com/AquaticInformatics/packages.python.aqi-ml-service-framework.git", rev = "v1.0.0"}
+aqi-anomaly = {git = "https://github.com/AquaticInformatics/packages.python.aqi-anomaly.git", rev = "v1.1.1"}
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.0.2"
+pylint = "^2.15.10"
+isort = "^5.12.0"
+black = "^23.3.0"
+mypy = "^1.4.1"
+pytest = "^7.4.0"
+pytest-custom_exit_code = "^0.3.0"
+cookiecutter = "^1.7.3"
+matplotlib = "^3.7.0"
+boto3 = "^1.26.83"
+moto = "^4.1.3"
+
+[tool.pylint.basic]
+max-line-length = 88
+max-locals = 20
+max-args = 10
+max-attributes = 20
+min-public-methods = 1
+disable = [
+  "missing-docstring",
+  "missing-module-docstring",
+  "missing-function-docstring",
+  "missing-class-docstring"
+]
+
+[tool.pylint.master]
+extension-pkg-whitelist = "pydantic"
+
+[tool.pylint.typecheck]
+ignored-classes="DatetimeIndex"
+
+[tool.mypy]
+no_strict_optional = true
+
+[tool.pylint.design]
+# limiting the number of returns might discourage
+# the use of guard clauses. So we increase the
+# allowed number of returns from 6 to 8
+max-returns = 8
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.black]
+line-length = 88
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
